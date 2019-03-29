@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>厅雨--The way we relax</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords"
+          content="厅雨,听雨声,安静,冥想,放松,思考,睡眠,安神"/>
+    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="shortcut icon" href="http://qianjires.xxoojoke.com/tingyu_favicon.png">
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?68a17082130825925ceb0639e7944ef3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body>
+
+<div id="center_area">
+    <H4 style="font-weight: 700;font-size:28px;">厅雨</H4>
+    <button id="btnPlay" class="play" onclick="playAudio()"></button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="volume_control">
+        <label><input type="range" oninput="setVolume(this.value,1)" onchange="setVolume(this.value,1)"
+                      min="0" max="1" step="0.01" value="1"/>雨声</label>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="volume_control">
+        <label><input type="range" oninput="setVolume(this.value,2)" onchange="setVolume(this.value,2)"
+                      min="0" max="1" step="0.01" value="0.3"/>钢琴</label>
+    </div>
+</div>
+</div>
+<audio id="player_rain" loop="loop">
+    <source src="" type="audio/mp4" id="player_rain_source"/>
+    浏览器暂不支持此功能.
+</audio>
+<audio id="player_music" loop="loop">
+    <source src="" type="audio/mp3"
+            id="player_music_source"/>
+    浏览器暂不支持此功能.
+</audio>
+</div>
+
+<script>
+    const host = "http://qianjires.xxoojoke.com/";
+    const rain = document.getElementById('player_rain');
+    const music = document.getElementById('player_music');
+    const playBtn = document.getElementById('btnPlay');
+    let platFirst = true;
+
+    function playAudio() {
+        if (rain.paused) {
+            if (platFirst) {
+                const sourceRain = document.getElementById("player_rain_source");
+                sourceRain.src = host + "therain.m4a";
+                setVolume(1, 1);
+                rain.load();
+
+                const sourceMusic = document.getElementById("player_music_source");
+                sourceMusic.src = host + "In_Autumn_the_Leaves_Came_to_Our_House.mp3";
+                setVolume(0.3, 2);
+                music.load();
+            }
+            rain.play();
+            music.play();
+            playBtn.className = "";
+            playBtn.className = "pause";
+        } else {
+            rain.pause();
+            music.pause();
+            playBtn.className = "";
+            playBtn.className = "play";
+        }
+        platFirst = false;
+    }
+
+    function setVolume(volume, target) {
+        if (target === 1) {
+            rain.volume = volume;
+        } else {
+            music.volume = volume;
+        }
+    }
+</script>
+</body>
+</html>
