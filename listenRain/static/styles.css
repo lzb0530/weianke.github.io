@@ -19,6 +19,7 @@ body {
 
 .pause {
     background: url('pause.svg');
+    animation: rotates 15s linear 0s infinite;
 }
 
 .volume_control {
@@ -132,4 +133,11 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
     background: #ffffff;
+}
+@keyframes rotates {
+    0% {}
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
